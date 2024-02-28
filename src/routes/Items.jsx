@@ -6,7 +6,7 @@ export async function loader() {
   return { data };
 }
 
-const Items = () => {
+const items = () => {
   const { data } = useLoaderData();
   return (
     <>
@@ -15,7 +15,7 @@ const Items = () => {
         {data.map((item, index) => {
           return (
             <li key={index}>
-              <Link to={item.id}>
+              <Link to={{ pathname: `/items/${item.id}` }}>
                 {item.title}
                 <img src={item.image} />
               </Link>
@@ -27,4 +27,4 @@ const Items = () => {
   );
 };
 
-export default Items;
+export default items;
