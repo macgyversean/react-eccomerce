@@ -1,17 +1,27 @@
-import { useLoaderData } from "react-router-dom";
-export function loader({ params }) {
+import { useLoaderData, redirect } from "react-router-dom";
+export async function loader({ params }) {
   const { slug } = params;
-  return { slug };
+  const url = `https://fakestoreapi.com/products/${slug}`;
+  const data = await fetch(url).then((response) => response.json());
+  return { data };
 }
 
-const SingleItem = () => {
-  const { slug } = useLoaderData();
+const singleItem = () => {
+  const { data } = useLoaderData();
+
   return (
-    <p>
-      Single Item Page <img src={slug.image} alt={slug.name} />
-      {slug.title}
-      {slug.price}
-    </p>
+    <>
+      <h2>ITEM LIST:</h2>
+      <ul>
+        <li>
+          {data.id}
+          {data.title}
+          {data.category}
+          {data.descritption}
+          <img src={data.image} />
+        </li>
+      </ul>
+    </>
   );
 };
-export default SingleItem;
+export default singleItem;
