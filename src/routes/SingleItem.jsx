@@ -1,4 +1,5 @@
 import { useLoaderData, redirect } from "react-router-dom";
+
 export async function loader({ params }) {
   const { slug } = params;
   const url = `https://fakestoreapi.com/products/${slug}`;
@@ -18,6 +19,7 @@ const singleItem = () => {
           {data.title}
           {data.category}
           {data.descritption}
+          {data.price}
           <img src={data.image} />
         </li>
       </ul>

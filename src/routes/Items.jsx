@@ -15,11 +15,8 @@ const Items = () => {
         {data.map((item, index) => {
           return (
             <li key={index}>
-              <Link to={item.slug}>
-                {item.id}
+              <Link to={item.id}>
                 {item.title}
-                {item.category}
-                {item.descritption}
                 <img src={item.image} />
               </Link>
             </li>
